@@ -1,3 +1,5 @@
+using Hubs;
+
 var builder = WebApplication.CreateBuilder(args);
 var corsPolicy = "CORSPolicy";
 
@@ -8,11 +10,17 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy(corsPolicy, policy =>
     {
-        policy.AllowAnyOrigin()
+        policy
+        .SetIsOriginAllowed(origin => true) //dynamic configuration
+        // .WithOrigins("http://localhost:4200") //explicit configuration
+        // .AllowAnyOrigin()    //does not work with allowcredentials, which signalr seems to require
+        .AllowAnyMethod()
         .AllowAnyHeader()
-        .AllowAnyHeader();
+        .AllowCredentials();
     });
 });
+
+builder.Services.AddSignalR();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -33,5 +41,7 @@ app.UseCors(corsPolicy);
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapHub<TestHub>("/testHub");
 
 app.Run();

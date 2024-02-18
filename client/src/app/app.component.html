@@ -1,7 +1,21 @@
 <h1>How to get tabs to talk to eachother</h1>
 
 <ng-container *ngIf="weatherForecast$ | async as weatherForecast">
-  {{weatherForecast | json}}
+  {{ weatherForecast | json }}
 </ng-container>
+
+<div>
+  {{ messages | json }}
+</div>
+
+<div>
+  <div>
+    <input type="text" [(ngModel)]="message" />
+  </div>
+  <div>
+    {{ message }}
+  </div>
+  <button (click)="sendMessage()">Send Message</button>
+</div>
 
 <router-outlet></router-outlet>
