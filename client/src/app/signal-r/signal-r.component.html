@@ -1,0 +1,54 @@
+<div class="row mb-2">
+    <div class="col-4">
+        <label for="message" class="form-label">Type your message</label>
+        <input type="text" [(ngModel)]="messageToSend" id="message" class="form-control" />
+    </div>
+</div>
+<div class="row mb-2">
+    <div class="col-4">
+        <button (click)="sendMessage()" class="btn btn-primary">Send Message</button>
+    </div>
+</div>
+
+<div class="row  mb-2">
+    <div class="col-4">
+        @if (messages.length) {
+        <ul class="list-group">
+            @for (message of messages; track message) {
+
+            @if (message.type === 'Sent') {
+            <li class="list-group-item list-group-item-primary">
+                <i class="bi-send"></i>
+                {{message.message}}
+            </li>
+            }
+            @else {
+            <li class="list-group-item list-group-item-success">
+                <i class="bi-envelope"></i>
+                {{message.message}}
+            </li>
+            }
+
+            }
+        </ul>
+        }
+        @else {
+        <h2>No messages yet</h2>
+        }
+        <!-- <ul *ngIf="messages.length > 0; else noMessages" class="list-group">
+            <li *ngFor="let message of messages" class="list-group-item">
+                @if (message.type === 'Sent') {
+                <i class="bi-send"></i>
+                }
+                @else {
+                <i class="bi-envelope"></i>
+                }
+                {{message.message}}
+            </li>
+        </ul> -->
+    </div>
+
+    <ng-template #noMessages>
+
+    </ng-template>
+</div>
