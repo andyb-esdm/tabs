@@ -1,0 +1,7 @@
+<h1>How to get tabs to talk to eachother</h1>
+
+<ng-container *ngIf="weatherForecast$ | async as weatherForecast">
+  {{weatherForecast | json}}
+</ng-container>
+
+<router-outlet></router-outlet>
