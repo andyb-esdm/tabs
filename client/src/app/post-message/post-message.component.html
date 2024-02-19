@@ -1,1 +1,15 @@
-<p>post-message works!</p>
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-4">
+            <button *ngIf="!windowOpen" class="btn btn-primary" (click)="openWindow()">Open the window</button>
+            <ng-container *ngIf="windowOpen">
+                <form>
+                    <label for="message">Message</label>
+                    <input autocomplete="off" type="text" class="form-control" [(ngModel)]="message" id="message"
+                        name="message">
+                    <button class="btn btn-primary" (click)="postMessage()">Post a message</button>
+                </form>
+            </ng-container>
+        </div>
+    </div>
+</div>

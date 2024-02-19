@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="col">
+        <ng-container *ngIf="records$ | async as records; else loading">
+            <div class="fw-bold mb-2 mt-2">Records Linked to Record: {{ recordId }}</div>
+            <ng-container *ngIf="records.length > 0; else noRecords">
+                <div *ngFor="let record of records" class="border d-flex mt-2 p-2 d-flex gap-1">
+                    <span class="fw-bold">Record Id:</span>
+                    <span>{{ record.id }}</span>
+                    <span class="fw-bold">Name:</span>
+                    <span>{{ record.name }}</span>
+                    <span class="fw-bold">Date:</span>
+                    <span>{{ record.date }}</span>
+                </div>
+            </ng-container>
+        </ng-container>
+    </div>
+</div>
+
+<ng-template #loading>
+    Loading ...
+</ng-template>
+
+<ng-template #noRecords>
+    <div>
+        No linked records
+    </div>
+</ng-template>

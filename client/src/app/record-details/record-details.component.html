@@ -1,0 +1,39 @@
+<div class="row">
+    <ng-container *ngIf="record$ | async as record; else loading">
+        <div class="col">
+            <div class="fw-bold my-3">Record Details</div>
+            <div class="border p-2">
+                <div>
+                    <span class="fw-bold">Record ID: </span>
+                    <span>{{ record.id }}</span>
+                </div>
+                <div>
+                    <span class="fw-bold">Name: </span>
+                    <span>{{ record.name }}</span>
+                </div>
+                <div>
+                    <span class="fw-bold">Date: </span>
+                    <span>{{ record.date }}</span>
+                </div>
+                <div>
+                    <span class="fw-bold">Description: </span>
+                    <p>{{ record.description }}</p>
+                </div>
+                <div *ngIf="record.recordId">
+                    <a [routerLink]="'/broadcast-channel/record-details/'+record.recordId">Linked to record
+                        {{record.recordId }}</a>
+                </div>
+                <div *ngIf="record.hasLinks" class="d-flex justify-content-end">
+                    <a class="btn btn-info" [routerLink]="'/linked-records/'+record.id">View Linked Records</a>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</div>
+
+
+<ng-template #loading>
+    <div class="col">
+        Loading ...
+    </div>
+</ng-template>

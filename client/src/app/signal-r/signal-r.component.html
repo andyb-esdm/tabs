@@ -2,7 +2,8 @@
     <div class="row mb-2">
         <div class="col-4">
             <label for="message" class="form-label">Type your message</label>
-            <input type="text" name="messageToSend" [(ngModel)]="messageToSend" id="message" class="form-control" />
+            <input autocomplete="off" type="text" name="messageToSend" [(ngModel)]="messageToSend" id="message"
+                class="form-control" />
         </div>
     </div>
     <div class="row mb-2">
@@ -13,7 +14,7 @@
 </form>
 
 <div class="row mb-2">
-    <div class="col-4">
+    <div class="col-6">
         @if (messages.length) {
         <ul class="list-group">
             @for (message of messages; track message) {

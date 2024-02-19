@@ -1,1 +1,21 @@
-<p>broadcast-channel works!</p>
+<div class="row">
+    <div class="col-3">
+        <ng-container *ngIf="recordList$ | async as recordList; else loading">
+            <nav *ngIf="recordList.length > 0; else noRecords" class="d-flex flex-column bg-light py-3 ps-2">
+                <span class="fw-bold mb-2">Records</span>
+                <app-record-nav-link *ngFor="let record of recordList" [record]="record"></app-record-nav-link>
+            </nav>
+        </ng-container>
+    </div>
+    <div class="col-9">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+
+<ng-template #loading>
+    Loading ...
+</ng-template>
+
+<ng-template #noRecords>
+    No Records
+</ng-template>
