@@ -1,14 +1,16 @@
-<div class="row mb-2">
-    <div class="col-4">
-        <label for="message" class="form-label">Type your message</label>
-        <input type="text" [(ngModel)]="messageToSend" id="message" class="form-control" />
+<form>
+    <div class="row mb-2">
+        <div class="col-4">
+            <label for="message" class="form-label">Type your message</label>
+            <input type="text" name="messageToSend" [(ngModel)]="messageToSend" id="message" class="form-control" />
+        </div>
     </div>
-</div>
-<div class="row mb-2">
-    <div class="col-4">
-        <button (click)="sendMessage()" class="btn btn-primary">Send Message</button>
+    <div class="row mb-2">
+        <div class="col-4">
+            <button (click)="sendMessage()" class="btn btn-primary">Send Message</button>
+        </div>
     </div>
-</div>
+</form>
 
 <div class="row mb-2">
     <div class="col-4">
