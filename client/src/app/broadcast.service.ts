@@ -1,5 +1,5 @@
 import { Injectable, NgZone, OnDestroy } from '@angular/core';
-import { Observable, Subject, of } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, of } from 'rxjs';
 import { IRecordListItem } from './models/record-list-item.model';
 import { IRecord } from './models/record.model';
 
@@ -10,6 +10,10 @@ export class BroadcastService implements OnDestroy {
   private recordIdChannel = new BroadcastChannel('record-id');
   private recordIdSubject = new Subject<number>();
   readonly recordId$ = this.recordIdSubject.asObservable();
+
+  private loggedInChannel = new BroadcastChannel('logged-in');
+  private loggedInSubject = new BehaviorSubject<boolean>(true);
+  readonly loggedIn$ = this.loggedInSubject.asObservable();
 
   private readonly records: IRecord[] = [
     { id: 1, name: 'buzzard', date: '26/04/2023', description: 'observed flying over the river at dusk', recordId: null },
@@ -36,6 +40,10 @@ export class BroadcastService implements OnDestroy {
 
   constructor(private zone: NgZone) {
     this.recordIdChannel.onmessage = (event) => this.zone.run(() => this.recordIdSubject.next(Number(event.data)));
+    this.loggedInChannel.onmessage = (event) => this.zone.run(() => {
+      console.log(event)
+      this.loggedInSubject.next(Boolean(event.data))
+    });
   }
 
   getRecordList(): Observable<IRecordListItem[]> {
@@ -58,6 +66,11 @@ export class BroadcastService implements OnDestroy {
 
   getLinkedRecords(id: number): Observable<IRecord[]> {
     return of(this.records.filter(record => record.recordId === id));
+  }
+
+  logout(): void {
+    this.loggedInChannel.postMessage(false);
+    // this.loggedInSubject.next(false);
   }
 
   ngOnDestroy(): void {

@@ -6,6 +6,7 @@ import { BroadcastChannelComponent } from './broadcast-channel/broadcast-channel
 import { RecordDetailsComponent } from './record-details/record-details.component';
 import { LinkedRecordsComponent } from './linked-records/linked-records.component';
 import { PostMessageComponent } from './post-message/post-message.component';
+import { LoginComponent } from './login/login.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'broadcast-channel', pathMatch: 'full' },
@@ -15,6 +16,7 @@ export const routes: Routes = [
             { path: 'record-details/:id', component: RecordDetailsComponent },
         ]
     },
+    { path: 'login', component: LoginComponent },
     { path: 'linked-records/:id', component: LinkedRecordsComponent },
     { path: 'local-storage', component: LocalStorageComponent },
     { path: 'post-message', component: PostMessageComponent },

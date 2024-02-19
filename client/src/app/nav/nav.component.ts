@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { BroadcastService } from '../broadcast.service';
 
 @Component({
   selector: 'app-nav',
@@ -10,4 +11,10 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 })
 export class NavComponent {
 
+  constructor(private broadcastService: BroadcastService, private router: Router) { }
+
+  logout() {
+    this.broadcastService.logout();
+    this.router.navigate(['/login']);
+  }
 }
