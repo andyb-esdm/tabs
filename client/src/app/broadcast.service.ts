@@ -75,5 +75,6 @@ export class BroadcastService implements OnDestroy {
 
   ngOnDestroy(): void {
     this.recordIdChannel.close();
+    this.loggedInChannel.close();
   }
 }
