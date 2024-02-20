@@ -1,13 +1,25 @@
-<div class="row mt-3">
-    <div class="col-6">
-        <form>
-            <label for="helpText">Type some text</label>
-            <input autocomplete="off" type="text" name="helpText" [(ngModel)]="helpText" id="helpText"
-                class="form-control">
-            <button class="btn btn-primary mt-2" (click)="save()">Save to local storage</button>
-        </form>
-        <div *ngIf="helpText$ | async as storedText">
-            Local storage has changed to: {{ storedText }}
+<div [style]="'background-color:'+colour" class="px-2 py-2">
+    <div class="row mt-3">
+        <div class="col-6">
+            <form>
+                <label for="helpText">Type some text</label>
+                <input autocomplete="off" type="text" name="helpText" [(ngModel)]="helpText" id="helpText"
+                    class="form-control">
+                <button class="btn btn-primary mt-2" (click)="saveHelpText()">Save to local storage</button>
+            </form>
+            <div *ngIf="helpText$ | async as storedText">
+                Local storage has changed to: {{ storedText }}
+            </div>
+        </div>
+    </div>
+    <div class="row my-5">
+        <div class="col-3">
+            <form>
+                <label for="colour">Select a background colour</label>
+                <input autocomplete="off" type="color" name="colour" [(ngModel)]="colour" id="colour"
+                    class="form-control">
+                <button class="btn btn-primary mt-2" (click)="saveColour()">Save to local storage</button>
+            </form>
         </div>
     </div>
 </div>

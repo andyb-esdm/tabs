@@ -15,7 +15,6 @@ import { BroadcastService } from './broadcast.service';
 export class AppComponent {
   constructor(private broadcastService: BroadcastService, private router: Router) {
     this.broadcastService.loggedIn$.subscribe(loggedIn => {
-      console.log(loggedIn)
       if (!loggedIn) {
         this.router.navigate(['/login']);
       }
