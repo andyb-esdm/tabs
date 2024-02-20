@@ -41,7 +41,6 @@ export class BroadcastService implements OnDestroy {
   constructor(private zone: NgZone) {
     this.recordIdChannel.onmessage = (event) => this.zone.run(() => this.recordIdSubject.next(Number(event.data)));
     this.loggedInChannel.onmessage = (event) => this.zone.run(() => {
-      console.log(event)
       this.loggedInSubject.next(Boolean(event.data))
     });
   }
