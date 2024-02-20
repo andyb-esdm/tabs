@@ -11,7 +11,6 @@ export class PostMessageService {
   constructor() { }
 
   postMessage(message: string) {
-    console.log(message)
     if (this.window && this.origin) {
       this.window.postMessage(message, this.origin);
     }

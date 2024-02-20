@@ -23,6 +23,7 @@ export class PostMessageComponent {
   openWindow() {
     this.windowOpen = true;
     const origin = 'http://localhost:4201';
+    // const origin = 'https://cmsi-ne-dev.esdm.co.uk';
     const targetWindow = window.open(origin);
     this.postMessageService.setTarget(targetWindow, origin);
   }
