@@ -70,7 +70,6 @@ export class BroadcastService implements OnDestroy {
 
   logout(): void {
     this.loggedInChannel.postMessage(false);
-    // this.loggedInSubject.next(false);
   }
 
   ngOnDestroy(): void {
