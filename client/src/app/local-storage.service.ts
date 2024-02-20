@@ -18,7 +18,7 @@ export class LocalStorageService {
     // window.addEventListener('storage', (event) => console.log(event));
   }
 
-  save(helpText: string | null) {
+  saveHelpText(helpText: string | null) {
     if (helpText) {
       localStorage.setItem('helpText', helpText);
     } else {

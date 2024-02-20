@@ -20,7 +20,7 @@ export class LocalStorageComponent {
   }
 
   save() {
-    this.localStorageService.save(this.helpText);
+    this.localStorageService.saveHelpText(this.helpText);
     this.helpText = '';
   }
 }
